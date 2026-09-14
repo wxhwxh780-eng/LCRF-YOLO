@@ -12,11 +12,9 @@ if __name__ == "__main__":
     if torch.cuda.is_available():
         print("GPU:", torch.cuda.get_device_name(0))
 
-    data_yaml = "/home/jiao/users/xiexy/ultralytics-main/AGE-YOLO-datasets/gc10_x4/gc10_data.yaml"
-    model_yaml = "/home/jiao/users/xiexy/ultralytics-main/ultralytics-main/ultralytics/cfg/models/11/yolo11-age.yaml"
+    data_yaml = "/home/jiao/users/xiexy/ultralytics-main//gc10_x4/gc10_data.yaml"
+    model_yaml = "/home/jiao/users/xiexy/ultralytics-main/ultralytics-main/ultralytics/cfg/models/11/yolo11-gc.yaml"
 
-    # 先用官方 AGE-YOLO 数据集 split 跑 YOLO11n baseline
-    # 注意：这里是从头训练，不加载 yolo11n.pt
     model = YOLO(model_yaml)
 
     train_results = model.train(
@@ -28,10 +26,9 @@ if __name__ == "__main__":
         device=0,
 
         deterministic=True,
-        seed=0,
 
-        project="runs/AGE/GC10",
-        name="LCRB(backbone P4) + RCSFusion+seed=42",
+
+
 
         optimizer="SGD",
         lr0=0.01,
@@ -45,14 +42,6 @@ if __name__ == "__main__":
 
         pretrained=False,
 
-        # 尽量贴近 AGE-YOLO 论文/源码里描述的 mixed augmentation
-        # 先不做离线 x5，只使用在线增强
-        mosaic=1.0,
-        scale=0.1,
-        hsv_s=0.2,
-        hsv_v=0.2,
-        fliplr=0.0,
-        flipud=0.0,
 
         plots=True
     )
@@ -85,7 +74,6 @@ if __name__ == "__main__":
         batch=16,
         device=0,
         plots=True,
-        project="runs/AGE_eval",
         name="age_x5+fcmanet_l6_seed42"
     )
 
