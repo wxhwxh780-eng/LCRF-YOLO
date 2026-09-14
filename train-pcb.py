@@ -13,7 +13,7 @@ if __name__ == "__main__":
         print("GPU:", torch.cuda.get_device_name(0))
 
     # AGE-style offline augmentation version
-    data_yaml = "/home/jiao/users/xiexy/ultralytics-main/AGE-YOLO-datasets/pcb_age_aug/hripcb_data_age_aug.yaml"
+    data_yaml = "/home/jiao/users/xiexy/ultralytics-main/pcb_age_aug/hripcb_data_age_aug.yaml"
 
     # 确认这个 yaml 是 LCRB + RCSFusion 版本
     model_yaml = "/home/jiao/users/xiexy/ultralytics-main/ultralytics-main/ultralytics/cfg/models/11/yolo11-pcb.yaml"
@@ -29,10 +29,6 @@ if __name__ == "__main__":
         device=0,
 
         deterministic=True,
-        seed=0,
-
-        project="runs/AGE/LAST/PCB",
-        name="pcb_lcrb_rcsfusion_age_aug_seed0",
 
         optimizer="SGD",
         lr0=0.01,
@@ -46,15 +42,7 @@ if __name__ == "__main__":
 
         pretrained=False,
 
-        # offline augmentation 已经做了 x6
-        # 训练阶段保留 AGE-YOLO 风格 mixed augmentation
-        mosaic=1.0,
-        scale=0.1,
-        hsv_h=0.01,
-        hsv_s=0.2,
-        hsv_v=0.2,
-        fliplr=0.0,
-        flipud=0.0,
+
 
         plots=True
     )
@@ -89,8 +77,7 @@ if __name__ == "__main__":
         batch=16,
         device=0,
         plots=True,
-        project="runs/AGE_eval/pcb",
-        name="pcb_lcrb_rcsfusion_age_aug_seed0"
+
     )
 
     print("\n========== TEST METRICS SUMMARY ==========")
