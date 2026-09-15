@@ -2,40 +2,43 @@
 
 Official implementation of:
 
-**LCRF-YOLO: Lightweight Industrial Defect Detection via Local Contrast Enhancement and Response-Calibrated Cross-Scale Fusion**
+**LCRF-YOLO: Local Contrast Residual and Response-Calibrated Cross-Scale Fusion for Lightweight Industrial Defect Detection**
 
-## Overview
+This repository provides the official implementation of LCRF-YOLO, a lightweight object detector designed for weak and low-contrast industrial surface defect detection.
 
-This repository provides the official implementation of **LCRF-YOLO**, a lightweight detector designed for industrial defect detection under challenging conditions, including **low-contrast defects** and **background interference**.
-
-LCRF-YOLO is built upon the YOLOv11n framework and introduces two lightweight feature refinement modules:
-
-- **Local Contrast Residual Block (LCRB)**  
-  Enhances local defect discriminability by exploiting neighborhood contrast differences and lightweight channel recalibration, improving the representation of weak defect cues.
-
-- **Response-Calibrated Cross-Scale Fusion (RCSFusion)**  
-  Calibrates feature responses after cross-scale aggregation through statistical-guided spatial gating and detail refinement, reducing response interference caused by feature fusion.
-
-The proposed framework improves weak defect representation while maintaining a lightweight architecture suitable for efficient industrial deployment.
+The source code is released for research purposes.
 
 ---
 
-## Environment
+## Overview
 
-The experiments are conducted under the following environment:
+Industrial surface defects usually suffer from:
 
-- Python 3.8
-- PyTorch 2.1.0
-- Ultralytics 8.4.21
-- CUDA-enabled GPU
+- low contrast between defects and background;
+- irregular and small-scale appearances;
+- insufficient feature responses after cross-scale fusion.
+
+To address these challenges, LCRF-YOLO introduces two lightweight modules:
+
+- **Local Contrast Residual Block (LCRB)**  
+  Enhances local defect-aware representations by exploiting contrast differences.
+
+- **Response-Calibrated Cross-Scale Fusion (RCSFusion)**  
+  Refines cross-scale feature interaction through statistical response calibration.
+
+The proposed framework is built upon YOLOv11n and achieves improved detection performance while maintaining lightweight computational complexity.
 
 ---
 
 ## Installation
 
-Clone this repository:
+The implementation is based on:
+
+- Python 3.8
+- PyTorch 2.1.0
+- Ultralytics YOLO framework
+
+Install dependencies:
 
 ```bash
-git clone https://github.com/wxhwxh780-eng/LCRF-YOLO.git
-
-cd LCRF-YOLO
+pip install -r requirements.txt
